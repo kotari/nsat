@@ -1,6 +1,6 @@
 # Intercept Pods scheduled to a Namespace and add Node Affinity, Tolerations, Annotations etc.
 
-First things first.  Most of the webhook examples are written in goland and this is an effort to offer similar functionality for python developers.  
+First things first.  Most of the webhook examples are written in golang and this is an effort to offer similar functionality for python developers.  
 
 Under the hood API Server can invoke webhooks before persisting the state to etcd.
 
@@ -51,3 +51,11 @@ nsafftolerations.yaml contents
 - Defines deployment where certs and rules.yaml files are mounted to enforce the rules
 - Defines service so API Server can communicate with the webhook
 - Finally it also defines namespaces to test the webhook
+
+
+To run the code on local minikube by generating self signed certs
+- Run ./certgen.sh
+- Copy base64 text into nsafftolerations-k8s.yaml and webhook.yaml as described in the shell output
+- kubectl apply -f nsafftolerations-k8s.yaml
+- kubectl apply -f webhook.yaml
+- kubectl apply -f pod.yaml
