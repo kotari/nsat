@@ -1,0 +1,13 @@
+nodeSelectorTerms:
+  - matchExpressions:
+    - key: eks.amazonaws.com/nodegroup
+      operator: In
+      values:
+      - nodegroup-cpu
+tolerations:
+  - key: "nodeGroup"
+    operator: "Equal"
+    effect: "NoSchedule"
+    value: "cpu"
+excludedLabels:
+  ignoreme: ignored

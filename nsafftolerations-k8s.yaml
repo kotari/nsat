@@ -1,0 +1,111 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+   name: hooks
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: admission-tls
+  namespace: hooks
+type: Opaque
+data:
+  servercrt.pem: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURFakNDQWZxZ0F3SUJBZ0lVRTlBN2gyMWYvc3hnNURBYkxpem8vT0JWNlUwd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0Z6RVZNQk1HQTFVRUF3d01ZV1J0YVhOemFXOXVYMk5oTUI0WERUSXlNRE15TnpBd01EZzFPVm9YRFRRNQpNRGd4TWpBd01EZzFPVm93R1RFWE1CVUdBMVVFQXd3T2JuTmhkQzVvYjI5cmN5NXpkbU13Z2dFaU1BMEdDU3FHClNJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUURtVXFuL2gzaDc3dDl5MThGU1RoY1k0Y3VjVGZpV3lKS2kKcDQvQ1ZFcURFeHR2blZPeWY2S0Y5Y0lhcE5DZlhXM1BuVVM3bi9FREp1T2RGdko5RVIzb0J5eFltbmFZcmwzMQphc05OblpMSTJJbzY2anZVSXdKLy9VNlJhNE9PVVdZRjAwOEU2eUlHdVBwbmdCZ09hSmRPWER4R3BBK1ZuZ0VMClpuU1lnRnowVFJKMzFGS0taRjUvSVl5aUU5VUVMUTluMk5IOEJScHdCbGliN1VHc0I4WEJxc2dscnd3Sk1HSksKOFN1SFBreHI2aU1scUZEeUVLT2YrZWtFV0dKbWljZDVJYWFmVFdnOEx3RjJ6dW1taUljRTN2NXY3WnF6djBEbApPb2J3SStOdDFMRnEva3lhdTgyNjFBdXFIZlUyTUlmdzQ0VTBvbHQ3endsVU9xTEZtZXVYQWdNQkFBR2pWREJTCk1Ba0dBMVVkRXdRQ01BQXdDd1lEVlIwUEJBUURBZ1hnTUIwR0ExVWRKUVFXTUJRR0NDc0dBUVVGQndNQ0JnZ3IKQmdFRkJRY0RBVEFaQmdOVkhSRUVFakFRZ2c1dWMyRjBMbWh2YjJ0ekxuTjJZekFOQmdrcWhraUc5dzBCQVFzRgpBQU9DQVFFQUFPeVRJbk9hZHpJaUlGNE1GWitiK2JLTTlDcTVweTk0K0VnWURhb2RIaHFESWU2bk83bWtXQkp6CmtlQjQrYXlQU29lcmkrM2QzbDdOYnJRckNWWkdSbFgrZm9VVDBVOVZkbUJnakZySjBDYW9vY1c2THZyZ0NudFIKVC83bGk0eElKYkVrcFVGd21MenZkL0QzRERHTVB4TkhYS245Y0V0RUNGWDIxQVIvT0lQWk1HeEYrUXNER0hqYgpXWVlmc3ZLTy80OFFFNzRwM3k1cU1Ud3F4ZldqOTdLQlNkSW54Q29EMDR3SkY3eVF4dTRTUlpMdGRqWEVGUzB4CnppZkQ1MEEyVy9oazBMOU5Tc3N2cHhKT2hxcXEvMW9meHcvSkV2T1M4dnovaHFsbGk2eDZBRDdEZzhhcy9xeU0KSnJJam1yQnNJSW40RzlOUmZhc2owS1RLcDNzZElRPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo="
+  serverkey.pem: "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcFFJQkFBS0NBUUVBNWxLcC80ZDRlKzdmY3RmQlVrNFhHT0hMbkUzNGxzaVNvcWVQd2xSS2d4TWJiNTFUCnNuK2loZlhDR3FUUW4xMXR6NTFFdTUveEF5YmpuUmJ5ZlJFZDZBY3NXSnAybUs1ZDlXckRUWjJTeU5pS091bzcKMUNNQ2YvMU9rV3VEamxGbUJkTlBCT3NpQnJqNlo0QVlEbWlYVGx3OFJxUVBsWjRCQzJaMG1JQmM5RTBTZDlSUwppbVJlZnlHTW9oUFZCQzBQWjlqUi9BVWFjQVpZbSsxQnJBZkZ3YXJJSmE4TUNUQmlTdkVyaHo1TWErb2pKYWhRCjhoQ2puL25wQkZoaVpvbkhlU0dtbjAxb1BDOEJkczdwcG9pSEJONytiKzJhczc5QTVUcUc4Q1BqYmRTeGF2NU0KbXJ2TnV0UUxxaDMxTmpDSDhPT0ZOS0piZTg4SlZEcWl4Wm5ybHdJREFRQUJBb0lCQVFDS1BnT2JSQXlsRm5NMwoweGhOOW1FV3BqQTMyUFRrUys3M2dldGZrSWhJdENjN2p3cTFrTFpVQVhaSDE3VUFjbXQrdWI2UGZ5aUI0ODJxCmRDT0h2Y1pkaGpDdjNjWmhUZ2RIVHBWNitLRXB2QTc3M2F1YllJZ1hta3FXTGhvQVNnc2FaQUtCeVQvYkdSdnoKRTRkYzNwb3lobG9IYkdHT1JCQU1iNnA3L2svTXNYSWlIeE9RaHJvbzI2SkFqaEpRcmU4aHoxQkZ4c0tFWGNEMQpsUEZYd3Y1RUN0VzZocTVPM3FCNzBHVWhOR2xnSHh4RUlvSXRGMDFFcWVuLy8zREQxMXdPRkJILzVVWVV4ZjhLCkxmc01neTRqQSs5VmZteWFkbjBnd293WlM5cmxEcU1sbnp1MFcyNVFBWjJ4N3J4NWQxNUVkeU40M2VEb1hKTXQKUVpxRTdKTEJBb0dCQVA0RkVHN1V0bzNRUERJNFc3aWI3dW5EeE03NXFucHZvU1ZNcGllbHlEY2ZuTklyN0Z0Ygp1UDV1QnZDRGRNUzNMNXNJc2htS3VQZGpod0tkbWtUTEFuTENYamFNOGVsOHRsanAwNnkxK2FGWFErckEzSzdvCnRYY2NCUkhJaVB3Wk93TWwxV21ReEJtSEVmbnJBZXE4OEx2MC9KN3EwVVlSN0o1bi9PdmVOYUhqQW9HQkFPZ2UKVHgvWXRBdWZaU2FVN2kvaktqVW9ZakxnRE1sNTlxOTJGRXMvSUZUWkZFMFlxSEcvY3RBSlgwUE5vVjhybytoQgpOTnhZaSs0U1ZZdGhiRGF1WUFYbndVMTVxRnJxRmQ0ZnFuUE1sK01XTUh4dGlDSjBiMnViU2szRTVEd2pJUms4CkNIRXovVFNSL3EvbENSbVNLYmtwOFpLNXBGbFJIa1MvYjBmMjZhMjlBb0dCQUpwWlhXamEyNnBFRTYrNFN4TmIKdk1wU2FHNFRpcUVtMzFZWXd3Vm9XTVlWOFdaTHhpeWxDVDJnZ1pyM1phWjZZUFRsVGNMelpmejhmdmI1Nk5sUQpPY2Fka0QyNVd1MHpHR0hpZ3ZwNUFKd211R0FXbklHemFVQmN5RC9NQ0dDV3ZDTG5oRXZHNlVGUnIzeWFiZW5DCnNNeWt5ak9PSDJkaVVOTFlBUGtaWnFGZEFvR0FBTlg3R3ZaQXo3bm5OMWhaOHpveU1MYlFnN1ppMVdibkNJSzQKVi8wR05NZ0RWck84QjR6VThRTFhvUHJnbGVNbVYvUEVLUGI0cWdiTzRBMmR3aVNtbTk3VngxMmt5WThHUFNLSQpEcHF5QVZOWElWdVRuZXdsYXBISWxyY2F5MHlsRmQ0dGVacmlVb29rREtZYWZra1VkV0k5U0hYNnJZZXBRRDRnClBIWWJLVkVDZ1lFQXlBL1A2b2JnRzNvMjRNdDVUdy9uaVZSL0ZjMGtPcTYrYlhoSGtmeGZSZ0FCYnNjb1c0YWgKZldhY1FVdGxHSWo3R1RnNHVXS2ZBNGhnWk5VNHR2d1haTTEwRjA5b253SVo2WDBVRkdQUHR6TFRyYzlSUlg5SQpPWWlYaGpTZGxDdnMvZFRlUnVjQTNNbFpXU2JqWVFibWkwK281SlhIcUxJNW5PNk9PSS9SOFZrPQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo="
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nsat-node-affinity
+  namespace: hooks
+data:
+  rules.yaml: |
+    testmutatingwebhook-a: 
+      nodeSelectorTerms:
+        - matchExpressions:
+          - key: eks.amazonaws.com/nodegroup
+            operator: In
+            values:
+            - nodegroup-cpu
+      tolerations:
+        - key: "nodeGroup"
+          operator: "Equal"
+          effect: "NoSchedule"
+          value: "cpu"
+    testmutatingwebhook-b: 
+      nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - minikube        
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nsat
+  namespace: hooks
+  labels:
+    app: nsat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nsat
+  template:
+    metadata:
+      labels:
+        app: nsat
+    spec:
+      containers:
+      - name: nsat
+        image: rkotari/mutatingwebhook:python-0.2.1
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000        
+        volumeMounts:
+        - name: certs-volume
+          readOnly: true
+          mountPath: "/certs"
+        - name: rules
+          mountPath: /app/src/rules.yaml
+          subPath: rules.yaml
+      volumes:
+      - name: certs-volume
+        secret:
+          secretName: admission-tls
+      - name: rules
+        configMap:
+          name: nsat-node-affinity
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nsat
+  namespace: hooks
+spec:
+  selector:
+    app: nsat
+  ports:
+  - port: 443
+    targetPort: 5000
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: testmutatingwebhook-a
+  labels:
+    webhook: enabled     
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: testmutatingwebhook-b
+  labels:
+    webhook: enabled 
+    

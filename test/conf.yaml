@@ -1,0 +1,24 @@
+testmutatingwebhook-a: 
+  nodeSelectorTerms:
+    - matchExpressions:
+      - key: eks.amazonaws.com/nodegroup
+        operator: In
+        values:
+        - nodegroup-cpu
+  tolerations:
+    - key: "nodeGroup"
+      operator: "Equal"
+      effect: "NoSchedule"
+      value: "cpu"
+testmutatingwebhook-b: 
+  nodeSelectorTerms:
+    - matchExpressions:
+      - key: eks.amazonaws.com/nodegroup
+        operator: In
+        values:
+        - nodegroup-gpu
+  tolerations:
+    - key: "nodeGroup"
+      operator: "Equal"
+      effect: "NoSchedule"
+      value: "gpu"

@@ -1,0 +1,27 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: mutating-nsat-webhook
+  namespace: hooks
+webhooks:
+  - name: nsat.hooks.svc
+    namespaceSelector:
+      matchLabels:
+        webhook: enabled
+    failurePolicy: Fail
+    sideEffects: None
+    admissionReviewVersions: ["v1","v1beta1"]
+    rules:
+      - apiGroups: [""]
+        resources:
+          - "pods"
+        apiVersions:
+          - "*"
+        operations:
+          - CREATE
+    clientConfig:
+      service:
+        name: nsat
+        namespace: hooks
+        path: /nsathook
+      caBundle: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUREekNDQWZlZ0F3SUJBZ0lVVUVnSXF1a1ZBRmVrMEhVSUQ0T3ZmRzI0V1g4d0RRWUpLb1pJaHZjTkFRRUwKQlFBd0Z6RVZNQk1HQTFVRUF3d01ZV1J0YVhOemFXOXVYMk5oTUI0WERUSXlNRE15TnpBd01EZzFPRm9YRFRRNQpNRGd4TWpBd01EZzFPRm93RnpFVk1CTUdBMVVFQXd3TVlXUnRhWE56YVc5dVgyTmhNSUlCSWpBTkJna3Foa2lHCjl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUF3OHVzSGlXK0lXWHc5L0JtcURXVzVhWTR0UThucS9XdzVNZzcKUmx5Z3dJd0xCR2ZoY01sazNxMWx0S2ovb0FjeFNmQVYrRCs4ejkvMkJheHJvOFpxQ1dLREhtQ1ozbnpBN2hoZAprZGpTb3pJYXltaEp1MW9rNEVrckZ0eUhjN0VCL2tnRG10SE1Iall5akd0OGJLRE12UjFjUWxnRGZWOE9yamQ1CmFLbVJRVkRleThraTBNTXhhS1JMaU9BaW8yajVkTVN3MDl3WWhjTnlkMnVYU25TNG1BYWZubnBmRDVzQ0F5T20KZVhaU0xrQlhMOXdPWnRibGZ4T2QrUjFiNFpjdDlXWWtvS21xSW9WeXVuNFBUcDJUZVBrTlAwanZtU3kzcmhjRQpCQU0xNDZ3RGpldm9adGdyV1NkZmI5Yms2VUUvQWlhaUNKNFhCMm1CMEwyK21jQkQ5d0lEQVFBQm8xTXdVVEFkCkJnTlZIUTRFRmdRVXpkVG1WYndQUTJFM0VkOUw2MXUvdHZhaGJUQXdId1lEVlIwakJCZ3dGb0FVemRUbVZid1AKUTJFM0VkOUw2MXUvdHZhaGJUQXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBUUVBTjZlR3htekM0MTcrL1dsLytvaU1lRzZQYUlWb0hpS0I3Qzg1Q1FibUVwU3d3eW5mTnRqUzJEME84dGRTCjNCTkFVbWZReWY2VE13cDQ1SjFacE1FWE05VmpjK29SL1UwREg1cXlvcVU2TkV6bDBtZDhjZDFoemk2UmljdHIKV1NGZ25yQVZxNjE4YkdwSVRmSjRiZjVOMGRhaXR1R20vRktJQjZTK0tZKzM0NXlHQUFwTEVjK1c5T2lxVmhCUQpPdzE1Q0dnaFJxcHBNeDNIWVpOZ2x6aUMzZ2dhaWlRRjg1UkJ4bldiSmZZdE9qV0RQRVM4SFQvZ2pSMnlWd1VaCjZZc1NPRys3dklsZjU4ZHAxdnMydGV5SkhrTzlkV2p0RTl5blJMOG4yeURnQTBCTDNkSUVUeG1iQU45Y3VHUDEKQllJbG4xZ1lyb250NVdLNWNZdEJLakltbEE9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg=="
